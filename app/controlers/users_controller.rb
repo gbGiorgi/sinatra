@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     else
       @user = User.create(:name => params[:name], :email => params[:email], :password => params[:password])
       session[:user_id] = @user.id
-      redirect to "/todo_list"
+      redirect to "/sign_in"
     end
   end
 
