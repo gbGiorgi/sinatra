@@ -13,6 +13,8 @@ gem 'thin'
 gem 'falcon'
 gem 'webrick'
 gem 'bcrypt'
+gem "require_all"
+
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
