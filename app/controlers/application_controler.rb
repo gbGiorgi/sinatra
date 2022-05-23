@@ -8,7 +8,7 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "ToDo secret"
 
     get "/" do
-      erb :sign_in
+      erb :'users/sign_in'
     end
 
     helpers do

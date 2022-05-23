@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   get '/sign_up' do
     if !session[:id]
-      erb :sign_up
+      erb :'users/sign_up'
     else
       erb :todo_list
     end
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     if logged_in?
       redirect to "/todo_list"
     else
-      erb :sign_in
+      erb :'users/sign_in'
     end
   end
 
@@ -41,13 +41,22 @@ class UsersController < ApplicationController
     redirect to "/"
   end
 
-  get '/todo_list' do
-    erb :todo_list
+  get '/edit_profile' do
+    @user = User.find(session[:id])
+    if @user
+      erb :'users/edit_profile'
+    else
+      redirect to "/"
+    end
   end
 
-  get '/user_profile' do
-    erb :user_profile
+  patch "/edit/:id" do
+    @user = User.find(params[:id])
+    @user.password = params[:password] unless params[:password] == ""
+    @user.save
+    redirect to '/todo_list'
   end
+
 
 
 end
