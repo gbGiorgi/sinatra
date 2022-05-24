@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     if !session[:id]
       erb :'users/sign_up'
     else
-      erb :todo_list
+      erb :'lists/todo_list'
     end
   end
 
@@ -52,6 +52,8 @@ class UsersController < ApplicationController
 
   patch "/edit/:id" do
     @user = User.find(params[:id])
+    @user.name = params[:name] unless params[:name] == ""
+    @user.email = params[:email] unless params[:email] == ""
     @user.password = params[:password] unless params[:password] == ""
     @user.save
     redirect to '/todo_list'
